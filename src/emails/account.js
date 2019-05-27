@@ -1,35 +1,26 @@
-const sgMail = require('@sendgrid/mail');
+const sgMail = require('@sendgrid/mail')
 
-sgMail.setApiKey('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');  //(process.env.SEND_GRID_API_KEY);
-
-// sgMail.send({
-//     to: 'fprocacci@hotmail.com',
-//     from: 'fprocacci@hotmail.com',
-//     subject: 'This is my first nodejs email',
-//     text: 'FIRST EMAIL'
-// });
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
 const sendWelcomeEmail = (email, name) => {
     sgMail.send({
         to: email,
-        from: 'felixprocacci@justthefactsmedia.com',
-        subject: 'Testing emails',
-        text: `Welcome to the app, ${name}`
-        // html: 
-    });    
+        from: 'andrew@mead.io',
+        subject: 'Thanks for joining in!',
+        text: `Welcome to the app, ${name}. Let me know how you get along with the app.`
+    })
 }
 
-const sendCancelEmail = (email, name) => {
+const sendCancelationEmail = (email, name) => {
     sgMail.send({
         to: email,
-        from: 'felixprocacci@justthefactsmedia.com',
-        subject: 'Testing cancel emails',
-        text: `Sorry to see you go, ${name}`
-        
-    });    
+        from: 'andrew@mead.io',
+        subject: 'Sorry to see you go!',
+        text: `Goodbye, ${name}. I hope to see you back sometime soon.`
+    })
 }
 
 module.exports = {
-    sendWelcomeEmail: sendWelcomeEmail,
-    sendCancelEmail: sendCancelEmail  
+    sendWelcomeEmail,
+    sendCancelationEmail
 }
